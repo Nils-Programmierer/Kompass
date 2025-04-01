@@ -1,0 +1,26 @@
+{
+    "theme_color": "#ead6e8",
+    "background_color": "#ead6e8",
+    "icons": [
+        {
+            "purpose": "maskable",
+            "sizes": "512x512",
+            "src": "img/icon512_rounded.png",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any",
+            "sizes": "512x512",
+            "src": "img/icon512_rounded.png",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "portrait",
+    "display": "standalone",
+    "dir": "auto",
+    "lang": "de",
+    "name": "Kompass",
+    "short_name": "Kompass",
+    "start_url": "/Kompass/index.html",
+    "description": "Die Kompass-App bietet eine einfache Möglichkeit, die aktuelle Himmelsrichtung genau zu bestimmen. Sie nutzt den integrierten Magnetometer-Sensor des Geräts und zeigt die Richtung auf einem digitalen Kompass an.   Ideal für Wanderer, Reisende und alle, die sich in der Natur orientieren möchten."
+}
