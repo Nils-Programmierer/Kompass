@@ -30,11 +30,10 @@ function getCompassHeading(alpha, beta, gamma) {
 function readOrientation(event) {
     let heading;
 
-    // Android liefert manchmal direkt brauchbares alpha
     if (event.absolute === true && event.alpha != null) {
-        heading = Math.round(event.alpha); // schon relativ zum Norden
+        heading = Math.round(event.alpha);
     } else {
-        heading = getCompassHeading(event.alpha, event.beta, event.gamma); // Berechnung
+        heading = getCompassHeading(event.alpha, event.beta, event.gamma);
     }
 
     document.querySelector(".needle").style.transform = "rotate(" + (-heading) + "deg)";
@@ -43,7 +42,6 @@ function readOrientation(event) {
 
 function initCompass() {
     if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-        // iOS (ab iOS 13+)
         DeviceOrientationEvent.requestPermission().then(response => {
             if (response === 'granted') {
                 window.addEventListener('deviceorientation', readOrientation, false);
@@ -52,7 +50,6 @@ function initCompass() {
             }
         }).catch(console.error);
     } else {
-        // Android oder Desktop
         if ('ondeviceorientationabsolute' in window) {
             window.addEventListener('deviceorientationabsolute', readOrientation, false);
         } else {
