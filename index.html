@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompass</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="img/icon512_maskable.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/compass-heading@1.0.6/compass-heading.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="headline">
+        Kompass
+    </div>
+
+    <div id="compass">
+        <div class="circle">
+            <div class="needle"></div>
+            <div class="label north">N</div>
+            <div class="label north-east">NE</div>
+            <div class="label east">E</div>
+            <div class="label south-east">SE</div>
+            <div class="label south">S</div>
+            <div class="label south-west">SW</div>
+            <div class="label west">W</div>
+            <div class="label north-west">NW</div>
+        </div>
+    </div>
+    
+
+    <div id="result" class="result">
+        0°
+    </div>
+    
+    
+</body>
+</html>
