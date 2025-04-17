@@ -3,6 +3,6 @@ Die Kompass-App bietet eine einfache Möglichkeit, die aktuelle Himmelsrichtung 
 ## Technologien
 Dieses Projekt verwendet HTML, CSS und JavaScript.
 ## Benutzung
--Die Website funktioniert nicht auf Laptops und PCs.
--Aktiviviere auf dem Handy in den Browsereinstellungen die Bewegungssensoren.
+- Die Website funktioniert nicht auf Laptops und PCs.
+- Aktiviviere auf dem Handy in den Browsereinstellungen die Bewegungssensoren.
 - Öffne die [Website](https://nils-programmierer.github.io/Kompass/)
