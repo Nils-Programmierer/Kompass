@@ -1,13 +1,64 @@
+function getCompassHeading(alpha, beta, gamma) {
+    let degtorad = Math.PI / 180;
+
+    let _x = beta  * degtorad;
+    let _y = gamma * degtorad;
+    let _z = alpha * degtorad;
+
+    let cX = Math.cos(_x);
+    let cY = Math.cos(_y);
+    let cZ = Math.cos(_z);
+    let sX = Math.sin(_x);
+    let sY = Math.sin(_y);
+    let sZ = Math.sin(_z);
+
+    let Vx = -cZ * sY - sZ * sX * cY;
+    let Vy = -sZ * sY + cZ * sX * cY;
+
+    let heading = Math.atan(Vx / Vy);
+
+    if (Vy < 0) {
+        heading += Math.PI;
+    } else if (Vx < 0) {
+        heading += 2 * Math.PI;
+    }
+
+    heading = heading * (180 / Math.PI);
+    return Math.round(heading);
+}
+
 function readOrientation(event) {
-    var angleAlpha = Math.round(event.alpha * 100) / 100; 
+    let heading;
 
-    var needle = document.querySelector(".needle");
-    needle.style.transform = "rotate(" + (-angleAlpha) + "deg)";
+    // Android liefert manchmal direkt brauchbares alpha
+    if (event.absolute === true && event.alpha != null) {
+        heading = Math.round(event.alpha); // schon relativ zum Norden
+    } else {
+        heading = getCompassHeading(event.alpha, event.beta, event.gamma); // Berechnung
+    }
 
-    var result = document.getElementById("result");
-    result.textContent = angleAlpha + "°";
+    document.querySelector(".needle").style.transform = "rotate(" + (-heading) + "deg)";
+    document.getElementById("result").textContent = heading + "°";
 }
 
-window.onload = function() {
-  window.addEventListener("deviceorientation", readOrientation, false);
+function initCompass() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        // iOS (ab iOS 13+)
+        DeviceOrientationEvent.requestPermission().then(response => {
+            if (response === 'granted') {
+                window.addEventListener('deviceorientation', readOrientation, false);
+            } else {
+                alert('Permission denied');
+            }
+        }).catch(console.error);
+    } else {
+        // Android oder Desktop
+        if ('ondeviceorientationabsolute' in window) {
+            window.addEventListener('deviceorientationabsolute', readOrientation, false);
+        } else {
+            window.addEventListener('deviceorientation', readOrientation, false);
+        }
+    }
 }
+
+window.onload = initCompass;
